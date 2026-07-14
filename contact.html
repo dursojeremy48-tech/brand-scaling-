@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Brand Scaling</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">BRAND SCALING</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    </div>
+    <ul class="mobile-menu" id="mobile-menu">
+      <li><a href="index.html" onclick="toggleMenu()">Home</a></li>
+      <li><a href="services.html" onclick="toggleMenu()">Services</a></li>
+      <li><a href="portfolio.html" onclick="toggleMenu()">Portfolio</a></li>
+      <li><a href="contact.html" onclick="toggleMenu()">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <p class="hero-tag">Let's Talk</p>
+    <h1>Get in <span class="gold">Touch</span></h1>
+    <p>Free consultation. No pressure. Just an honest conversation about your business.</p>
+  </div>
+
+  <div class="contact-section">
+    <div class="contact-info">
+      <div class="section-label">Contact Info</div>
+      <h2>Ready to Grow Your Business?</h2>
+      <p>Whether you need a website, help with Google, or a full marketing strategy — reach out and we'll figure out the best plan for your business.</p>
+      <div class="contact-detail">
+        <span class="icon">&#9993;</span>
+        <div>
+          <strong>Email</strong>
+          <a href="mailto:dursojeremy48@gmail.com">dursojeremy48@gmail.com</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <span class="icon">&#128205;</span>
+        <div>
+          <strong>Location</strong>
+          <span>Serving local & worldwide businesses</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <span class="icon">&#9200;</span>
+        <div>
+          <strong>Response Time</strong>
+          <span>Within 24 hours</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">Send a Message</div>
+      <form id="contact-form">
+        <label>Your Name</label>
+        <input type="text" name="name" placeholder="John Smith" required>
+        <label>Business Name</label>
+        <input type="text" name="business" placeholder="Joe's Barbershop">
+        <label>Email Address</label>
+        <input type="email" name="email" placeholder="john@example.com" required>
+        <label>What do you need?</label>
+        <select name="service">
+          <option value="">Select a service...</option>
+          <option>Website Design — Starter ($400)</option>
+          <option>Website Design — Standard ($700)</option>
+          <option>Website Design — Premium ($1,200+)</option>
+          <option>Monthly Marketing — Basic ($150/mo)</option>
+          <option>Monthly Marketing — Growth ($300/mo)</option>
+          <option>Monthly Marketing — Full Service ($600/mo)</option>
+          <option>Google Business Profile Setup</option>
+          <option>Not sure — just want to talk</option>
+        </select>
+        <label>Tell me about your business</label>
+        <textarea name="message" placeholder="What does your business do? What are your goals?" required></textarea>
+        <button type="submit">Send Message &rarr;</button>
+      </form>
+      <div class="form-success" id="form-success">
+        &#10003; Message sent! I'll get back to you within 24 hours.
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo">BRAND SCALING</span>
+        <p>Web design & digital marketing for businesses that want to grow.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-contact">
+        <a href="mailto:dursojeremy48@gmail.com">dursojeremy48@gmail.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Brand Scaling. All rights reserved.</div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    }
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('form-success').style.display = 'block';
+      this.style.display = 'none';
+    });
+  </script>
+</body>
+</html>

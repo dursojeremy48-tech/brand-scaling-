@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Brand Scaling</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">BRAND SCALING</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html" class="active">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    </div>
+    <ul class="mobile-menu" id="mobile-menu">
+      <li><a href="index.html" onclick="toggleMenu()">Home</a></li>
+      <li><a href="services.html" onclick="toggleMenu()">Services</a></li>
+      <li><a href="portfolio.html" onclick="toggleMenu()">Portfolio</a></li>
+      <li><a href="contact.html" onclick="toggleMenu()">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <p class="hero-tag">Our Work</p>
+    <h1>Client <span class="gold">Portfolio</span></h1>
+    <p>Real businesses. Real results.</p>
+  </div>
+
+  <section class="portfolio-section">
+    <h2>Recent Projects</h2>
+    <p class="pricing-sub">Every site is custom built — no templates, no shortcuts.</p>
+    <div class="portfolio-grid">
+
+      <div class="portfolio-item">
+        <div class="portfolio-thumb" style="background:#0a0a0a;color:#f0a500;font-size:18px;font-weight:bold;letter-spacing:2px;">HUGHES GLASS</div>
+        <div class="portfolio-info">
+          <h3>Hughes Glass</h3>
+          <p>Website design and Google Business Profile setup for Hughes Glass, a local window repair business. Built to bring in more calls and local customers.</p>
+          <a href="https://www.hugheswindowrepair.com" target="_blank" style="color:#f0a500;font-size:13px;font-weight:bold;text-decoration:none;">View Live Site &rarr;</a>
+          <br><br>
+          <span class="portfolio-tag">Website Design</span>
+          <span class="portfolio-tag" style="margin-left:6px;">Google Business Profile</span>
+          <span class="portfolio-tag" style="margin-left:6px;">Local SEO</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item" style="border:2px dashed #eee;border-radius:8px;display:flex;align-items:center;justify-content:center;min-height:300px;">
+        <div style="text-align:center;padding:40px;color:#ccc;">
+          <div style="font-size:48px;margin-bottom:16px;">+</div>
+          <p style="font-size:14px;">Your business could be here.<br>Let's build something great.</p>
+          <a href="contact.html" class="btn-primary" style="display:inline-block;margin-top:20px;">Get Started</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <h2>Want to Be in Our Portfolio?</h2>
+    <p>Let's build your website and grow your business online.</p>
+    <a href="contact.html" class="btn-primary">Start Your Project</a>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo">BRAND SCALING</span>
+        <p>Web design & digital marketing for businesses that want to grow.</p>
+        <div class="social-links">
+          <a href="#" title="Instagram">&#128247;</a>
+          <a href="#" title="LinkedIn">&#128188;</a>
+          <a href="mailto:dursojeremy48@gmail.com" title="Email">&#9993;</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-contact">
+        <a href="mailto:dursojeremy48@gmail.com">dursojeremy48@gmail.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Brand Scaling. All rights reserved.</div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

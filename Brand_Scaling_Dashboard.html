@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Scaling — Client Dashboard</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; }
+
+  header {
+    background: #0a0a0a;
+    color: #fff;
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header h1 { font-size: 22px; letter-spacing: 3px; color: #f0a500; }
+  header span { font-size: 13px; color: #888; }
+
+  .stats {
+    display: flex;
+    gap: 20px;
+    padding: 30px 40px 0;
+    flex-wrap: wrap;
+  }
+  .stat-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 24px 30px;
+    flex: 1;
+    min-width: 180px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-top: 4px solid #f0a500;
+  }
+  .stat-card .label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .stat-card .value { font-size: 32px; font-weight: bold; color: #0a0a0a; }
+  .stat-card .sub { font-size: 12px; color: #aaa; margin-top: 4px; }
+
+  .section { padding: 30px 40px; }
+  .section h2 { font-size: 16px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; color: #0a0a0a; margin-bottom: 20px; border-left: 4px solid #f0a500; padding-left: 12px; }
+
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+  thead { background: #0a0a0a; color: #f0a500; }
+  th { padding: 14px 16px; text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  td { padding: 14px 16px; font-size: 13px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fffbf0; }
+
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-outreach { background: #FFF2CC; color: #856404; }
+  .badge-proposal { background: #DDEBF7; color: #0070C0; }
+  .badge-signed { background: #d4edda; color: #155724; }
+  .badge-building { background: #FCE4D6; color: #C55A11; }
+  .badge-live { background: #c3e6cb; color: #0a5c24; }
+  .badge-scaling { background: #D9E1F2; color: #2E5EAA; }
+
+  .checklist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .checklist-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+  .checklist-card .card-header { padding: 14px 20px; font-size: 13px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
+  .checklist-card ul { list-style: none; padding: 0; }
+  .checklist-card ul li { padding: 10px 20px; font-size: 13px; border-bottom: 1px solid #f5f5f5; display: flex; align-items: center; gap: 10px; cursor: pointer; }
+  .checklist-card ul li:last-child { border-bottom: none; }
+  .checklist-card ul li:hover { background: #fafafa; }
+  .checklist-card ul li.done { color: #aaa; text-decoration: line-through; }
+  .checklist-card ul li .check { width: 18px; height: 18px; border-radius: 50%; border: 2px solid #ccc; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+  .checklist-card ul li.done .check { background: #00B050; border-color: #00B050; color: #fff; }
+
+  .add-client-btn {
+    background: #f0a500;
+    color: #000;
+    border: none;
+    padding: 12px 28px;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+  .add-client-btn:hover { background: #d4920a; }
+
+  .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 100; justify-content: center; align-items: center; }
+  .modal-overlay.active { display: flex; }
+  .modal { background: #fff; border-radius: 8px; padding: 32px; width: 500px; max-width: 95vw; }
+  .modal h3 { font-size: 18px; margin-bottom: 24px; color: #0a0a0a; }
+  .modal label { display: block; font-size: 12px; font-weight: bold; color: #555; margin-bottom: 6px; margin-top: 14px; text-transform: uppercase; letter-spacing: 1px; }
+  .modal input, .modal select { width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px; font-family: Arial; }
+  .modal-btns { display: flex; gap: 12px; margin-top: 24px; }
+  .btn-save { background: #0a0a0a; color: #fff; border: none; padding: 12px 24px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold; flex: 1; }
+  .btn-cancel { background: #f0f0f0; color: #333; border: none; padding: 12px 24px; border-radius: 4px; cursor: pointer; font-size: 13px; flex: 1; }
+
+  .revenue-bar { background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+  .bar-row { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+  .bar-label { width: 120px; font-size: 12px; color: #666; flex-shrink: 0; }
+  .bar-track { flex: 1; background: #f0f0f0; border-radius: 4px; height: 20px; overflow: hidden; }
+  .bar-fill { height: 100%; background: #f0a500; border-radius: 4px; transition: width 0.5s; }
+  .bar-val { width: 80px; font-size: 12px; font-weight: bold; color: #0a0a0a; text-align: right; flex-shrink: 0; }
+
+  footer { text-align: center; padding: 20px; font-size: 12px; color: #aaa; background: #0a0a0a; color: #555; margin-top: 40px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>BRAND SCALING</h1>
+  <span id="today-date"></span>
+</header>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-card">
+    <div class="label">Total Clients</div>
+    <div class="value" id="stat-total">0</div>
+    <div class="sub">all time</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Active Projects</div>
+    <div class="value" id="stat-active">0</div>
+    <div class="sub">in progress</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Monthly Recurring</div>
+    <div class="value" id="stat-mrr">$0</div>
+    <div class="sub">per month</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Live Sites</div>
+    <div class="value" id="stat-live">0</div>
+    <div class="sub">deployed</div>
+  </div>
+</div>
+
+<!-- CLIENT TABLE -->
+<div class="section">
+  <h2>Client Pipeline</h2>
+  <button class="add-client-btn" onclick="openModal()">+ Add New Client</button>
+  <table>
+    <thead>
+      <tr>
+        <th>Client</th>
+        <th>Business</th>
+        <th>Services</th>
+        <th>Stage</th>
+        <th>Setup Fee</th>
+        <th>Monthly</th>
+        <th>Website</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="client-table-body"></tbody>
+  </table>
+</div>
+
+<!-- PROCESS CHECKLIST -->
+<div class="section">
+  <h2>Project Process Checklist</h2>
+  <div class="checklist-grid">
+
+    <div class="checklist-card">
+      <div class="card-header" style="background:#FFF2CC;color:#856404;">Phase 1 — Outreach & Sales</div>
+      <ul>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Send cold DM / email / walk in</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Follow up after 5 days</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Schedule free consultation</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Send proposal with pricing</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Get contract signed</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Collect 50% deposit</li>
+      </ul>
+    </div>
+
+    <div class="checklist-card">
+      <div class="card-header" style="background:#DDEBF7;color:#0070C0;">Phase 2 — Onboarding</div>
+      <ul>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Send onboarding form</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Get logo, photos, brand colors</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Get domain login or buy domain</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Confirm scope in writing</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Set project timeline</li>
+      </ul>
+    </div>
+
+    <div class="checklist-card">
+      <div class="card-header" style="background:#E2EFDA;color:#00700A;">Phase 3 — Building</div>
+      <ul>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Set up project folder in VS Code</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Build homepage</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Build all additional pages</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Add contact form</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Test on mobile & desktop</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Send preview link to client</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Collect feedback & revisions</li>
+      </ul>
+    </div>
+
+    <div class="checklist-card">
+      <div class="card-header" style="background:#FCE4D6;color:#C55A11;">Phase 4 — Launch</div>
+      <ul>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Connect custom domain</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Deploy to Netlify</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Set up Google Business Profile</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Submit to Google Search Console</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Collect final payment</li>
+      </ul>
+    </div>
+
+    <div class="checklist-card">
+      <div class="card-header" style="background:#D9E1F2;color:#2E5EAA;">Phase 5 — Scaling (Monthly)</div>
+      <ul>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Check Google Business Profile</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Post updates for client</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Review site traffic</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Send monthly report</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Ask for referrals</li>
+        <li onclick="toggleDone(this)"><div class="check">✓</div> Collect monthly retainer</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ADD CLIENT MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h3>Add New Client</h3>
+    <label>Client Name</label>
+    <input type="text" id="f-name" placeholder="John Smith">
+    <label>Business Name</label>
+    <input type="text" id="f-biz" placeholder="Joe's Barbershop">
+    <label>Services</label>
+    <input type="text" id="f-services" placeholder="Website + GBP">
+    <label>Stage</label>
+    <select id="f-stage">
+      <option>Outreach</option>
+      <option>Proposal Sent</option>
+      <option>Contract Signed</option>
+      <option>Building</option>
+      <option>Live</option>
+      <option>Scaling</option>
+    </select>
+    <label>Setup Fee ($)</label>
+    <input type="number" id="f-setup" placeholder="400">
+    <label>Monthly Retainer ($)</label>
+    <input type="number" id="f-monthly" placeholder="150">
+    <label>Website URL</label>
+    <input type="text" id="f-url" placeholder="www.example.com">
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save" onclick="addClient()">Add Client</button>
+    </div>
+  </div>
+</div>
+
+<footer>© 2026 Brand Scaling — Jeremy Durso</footer>
+
+<script>
+  // Set today's date
+  document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+
+  // Load clients from localStorage
+  let clients = JSON.parse(localStorage.getItem('bs_clients') || '[]');
+
+  // Add sample client if empty
+  if (clients.length === 0) {
+    clients = [{
+      name: "First Client", biz: "Example Business", services: "Website + GBP",
+      stage: "Live", setup: 400, monthly: 50, url: "jolly-cendol-3e22f7.netlify.app"
+    }];
+    localStorage.setItem('bs_clients', JSON.stringify(clients));
+  }
+
+  function saveClients() { localStorage.setItem('bs_clients', JSON.stringify(clients)); }
+
+  function getBadge(stage) {
+    const map = {
+      "Outreach": "outreach", "Proposal Sent": "proposal",
+      "Contract Signed": "signed", "Building": "building",
+      "Live": "live", "Scaling": "scaling"
+    };
+    return `<span class="badge badge-${map[stage] || 'outreach'}">${stage}</span>`;
+  }
+
+  function renderTable() {
+    const tbody = document.getElementById('client-table-body');
+    tbody.innerHTML = '';
+    clients.forEach((c, i) => {
+      const url = c.url ? `<a href="https://${c.url.replace(/^https?:\/\//,'')}" target="_blank" style="color:#f0a500;text-decoration:none;">${c.url}</a>` : '—';
+      tbody.innerHTML += `
+        <tr>
+          <td><strong>${c.name}</strong></td>
+          <td>${c.biz}</td>
+          <td>${c.services}</td>
+          <td>${getBadge(c.stage)}</td>
+          <td>$${Number(c.setup||0).toLocaleString()}</td>
+          <td>$${Number(c.monthly||0).toLocaleString()}/mo</td>
+          <td>${url}</td>
+          <td><span onclick="removeClient(${i})" style="cursor:pointer;color:#ccc;font-size:18px;" title="Remove">×</span></td>
+        </tr>`;
+    });
+    updateStats();
+  }
+
+  function updateStats() {
+    const active = clients.filter(c => !["Live","Scaling"].includes(c.stage)).length;
+    const live = clients.filter(c => ["Live","Scaling"].includes(c.stage)).length;
+    const mrr = clients.reduce((s, c) => s + Number(c.monthly||0), 0);
+    document.getElementById('stat-total').textContent = clients.length;
+    document.getElementById('stat-active').textContent = active;
+    document.getElementById('stat-live').textContent = live;
+    document.getElementById('stat-mrr').textContent = '$' + mrr.toLocaleString();
+  }
+
+  function openModal() { document.getElementById('modal').classList.add('active'); }
+  function closeModal() { document.getElementById('modal').classList.remove('active'); }
+
+  function addClient() {
+    const c = {
+      name: document.getElementById('f-name').value || 'New Client',
+      biz: document.getElementById('f-biz').value || '',
+      services: document.getElementById('f-services').value || '',
+      stage: document.getElementById('f-stage').value,
+      setup: document.getElementById('f-setup').value || 0,
+      monthly: document.getElementById('f-monthly').value || 0,
+      url: document.getElementById('f-url').value || ''
+    };
+    clients.push(c);
+    saveClients();
+    renderTable();
+    closeModal();
+    ['f-name','f-biz','f-services','f-setup','f-monthly','f-url'].forEach(id => document.getElementById(id).value = '');
+  }
+
+  function removeClient(i) {
+    if (confirm('Remove this client?')) {
+      clients.splice(i, 1);
+      saveClients();
+      renderTable();
+    }
+  }
+
+  function toggleDone(li) {
+    li.classList.toggle('done');
+  }
+
+  renderTable();
+</script>
+</body>
+</html>

@@ -136,6 +136,12 @@ footer{border-top:1px solid var(--border);padding:40px 0}
 .foot-social{display:flex;gap:14px}
 .foot-social a{font-size:18px;transition:opacity .15s}
 .foot-social a:hover{opacity:0.7}
+/* ICP section */
+.icp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px}
+@media(max-width:640px){.icp-grid{grid-template-columns:1fr}}
+.icp-item{display:flex;align-items:center;gap:12px;padding:18px 20px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);font-size:14px;font-weight:600;transition:border-color .2s}
+.icp-item:hover{border-color:rgba(201,168,76,0.4)}
+.icp-check{width:22px;height:22px;border-radius:50%;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold);font-size:11px}
 </style>
 </head>
 <body>
@@ -151,7 +157,7 @@ footer{border-top:1px solid var(--border);padding:40px 0}
       <a href="#process">How It Works</a>
       <a href="#faq">FAQ</a>
     </div>
-    <a href="tel:+14802675833" class="nav-cta">📞 Call Us</a>
+    <a href="tel:+14802675833" class="nav-cta">Free Growth Audit</a>
   </div>
 </nav>
 <section class="hero">
@@ -160,10 +166,10 @@ footer{border-top:1px solid var(--border);padding:40px 0}
   <div class="wrap hero-inner">
     <div class="hero-badge"><span class="badge-dot"></span> Peoria, AZ · Serving Phoenix & West Valley</div>
     <h1>We Don't Build<br><em>Websites.</em><br>We Build Growth.</h1>
-    <p class="hero-sub">Custom websites and digital marketing for local businesses across Phoenix and the West Valley. We build your online presence — you focus on running your business.</p>
+    <p class="hero-sub">Helping established home service businesses turn their reputation into more calls, more jobs, and more revenue.</p>
     <div class="hero-btns">
-      <a href="#packages" class="btn-gold">See Our Packages</a>
-      <a href="tel:+14802675833" class="btn-outline">📞 (480) 267-5833</a>
+      <a href="tel:+14802675833" class="btn-gold">Get Your Free Growth Audit</a>
+      <a href="#packages" class="btn-outline">See Our Packages</a>
     </div>
     <div class="hero-stats">
       <div><span class="stat-num">100%</span><span class="stat-label">Custom built — no templates</span></div>
@@ -193,6 +199,22 @@ footer{border-top:1px solid var(--border);padding:40px 0}
     <div class="marquee-item"><span class="marquee-dot">✦</span> Local Business Consulting</div>
   </div>
 </div>
+
+<!-- CHANGE 2: New ICP section -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-eyebrow">Who we work with</div>
+    <h2 class="sh">Built for Businesses<br>Like Yours</h2>
+    <p class="section-sub">We work best with established home service companies that have a strong reputation but haven't fully tapped their online potential.</p>
+    <div class="icp-grid">
+      <div class="icp-item"><div class="icp-check">✦</div> Great local reputation</div>
+      <div class="icp-item"><div class="icp-check">✦</div> Want more qualified leads</div>
+      <div class="icp-item"><div class="icp-check">✦</div> Ready to invest in growth</div>
+      <div class="icp-item"><div class="icp-check">✦</div> Want a long-term partner</div>
+    </div>
+  </div>
+</section>
+
 <section class="section section-dark" id="services">
   <div class="wrap">
     <div class="section-eyebrow">What we do</div>
@@ -268,7 +290,7 @@ footer{border-top:1px solid var(--border);padding:40px 0}
       <div class="pkg-card">
         <div class="pkg-name">Foundation</div>
         <div class="pkg-price">$800 <span>– $1,500 one time</span></div>
-        <p class="pkg-desc">Everything you need to get found online and convert visitors into customers. The essential starting point for any local business.</p>
+        <p class="pkg-desc">For businesses ready to build credibility online and get found by local customers.</p>
         <div class="pkg-features">
           <div class="pkg-feature"><span class="check">✦</span> Professional website design</div>
           <div class="pkg-feature"><span class="check">✦</span> Mobile optimized</div>
@@ -277,13 +299,13 @@ footer{border-top:1px solid var(--border);padding:40px 0}
           <div class="pkg-feature"><span class="check">✦</span> Basic SEO setup</div>
           <div class="pkg-feature"><span class="check">✦</span> You own everything 100%</div>
         </div>
-        <a href="tel:+14802675833" class="pkg-cta pkg-cta-outline">Get Started</a>
+        <a href="tel:+14802675833" class="pkg-cta pkg-cta-outline">Get Your Free Growth Audit</a>
       </div>
       <div class="pkg-card featured">
         <div class="pkg-badge">Most Popular</div>
         <div class="pkg-name">Growth</div>
         <div class="pkg-price">$1,500 <span>– $3,000 one time</span></div>
-        <p class="pkg-desc">Everything in Foundation plus the tools to actively generate and convert leads every single month.</p>
+        <p class="pkg-desc">For businesses ready to generate more qualified leads and dominate local search every month.</p>
         <div class="pkg-features">
           <div class="pkg-feature"><span class="check">✦</span> Everything in Foundation</div>
           <div class="pkg-feature"><span class="check">✦</span> SEO foundation & local ranking</div>
@@ -292,12 +314,12 @@ footer{border-top:1px solid var(--border);padding:40px 0}
           <div class="pkg-feature"><span class="check">✦</span> Lead capture optimization</div>
           <div class="pkg-feature"><span class="check">✦</span> Monthly performance report</div>
         </div>
-        <a href="tel:+14802675833" class="pkg-cta pkg-cta-gold">Get Started</a>
+        <a href="tel:+14802675833" class="pkg-cta pkg-cta-gold">Get Your Free Growth Audit</a>
       </div>
       <div class="pkg-card">
         <div class="pkg-name">Partner</div>
         <div class="pkg-price">$500 <span>– $1,500/month</span></div>
-        <p class="pkg-desc">An ongoing growth partnership. We become your dedicated digital team working to grow your business every month.</p>
+        <p class="pkg-desc">For businesses committed to long-term growth with a dedicated digital team in their corner every month.</p>
         <div class="pkg-features">
           <div class="pkg-feature"><span class="check">✦</span> Ongoing SEO management</div>
           <div class="pkg-feature"><span class="check">✦</span> Website updates & maintenance</div>
@@ -306,7 +328,7 @@ footer{border-top:1px solid var(--border);padding:40px 0}
           <div class="pkg-feature"><span class="check">✦</span> Priority support</div>
           <div class="pkg-feature"><span class="check">✦</span> Quarterly strategy review</div>
         </div>
-        <a href="tel:+14802675833" class="pkg-cta pkg-cta-outline">Get Started</a>
+        <a href="tel:+14802675833" class="pkg-cta pkg-cta-outline">Get Your Free Growth Audit</a>
       </div>
     </div>
   </div>
@@ -317,11 +339,11 @@ footer{border-top:1px solid var(--border);padding:40px 0}
     <h2 class="sh">Built by Brand Scaling.<br>Built for You.</h2>
     <p class="section-sub">Every website is hand coded using custom HTML, CSS, and JavaScript — no templates, no page builders. Faster sites, better Google rankings, and a look that's uniquely yours.</p>
     <div class="diff-grid">
+      <div class="diff-item"><span class="diff-check">✦</span><div><h3>Business-first, not website-first</h3><p>We care about your revenue, not just your design. Every decision we make is built around helping your business grow.</p></div></div>
       <div class="diff-item"><span class="diff-check">✦</span><div><h3>Hand coded — no drag & drop</h3><p>Custom HTML, CSS & JavaScript on every project. Faster load times and better SEO than any template.</p></div></div>
       <div class="diff-item"><span class="diff-check">✦</span><div><h3>You own everything we build</h3><p>Once final payment is made, every file and every line of code belongs to you. No strings attached.</p></div></div>
       <div class="diff-item"><span class="diff-check">✦</span><div><h3>Direct communication</h3><p>No account managers, no middlemen. You talk directly to the person building your site.</p></div></div>
       <div class="diff-item"><span class="diff-check">✦</span><div><h3>Affordable for small businesses</h3><p>Agency quality at a price that makes sense for owner-operated local businesses in the Phoenix area.</p></div></div>
-      <div class="diff-item"><span class="diff-check">✦</span><div><h3>Mobile-first on every project</h3><p>Every site we build looks and works perfectly on phones, tablets, and desktops.</p></div></div>
       <div class="diff-item"><span class="diff-check">✦</span><div><h3>No hidden fees — ever</h3><p>Our pricing is fully transparent. What we quote is exactly what you pay. No surprises.</p></div></div>
     </div>
   </div>
@@ -399,17 +421,18 @@ footer{border-top:1px solid var(--border);padding:40px 0}
       <details class="faq-item"><summary>Are there any hidden fees?</summary><p>Never. Our pricing is fully transparent. The one-time build fee is exactly what you pay to get your site live. Monthly retainers are optional and clearly priced. No surprises.</p></details>
       <details class="faq-item"><summary>Do I need to know how to code?</summary><p>Not at all. We handle everything technical. You just tell us what you want and we build it.</p></details>
       <details class="faq-item"><summary>What if I want changes after the site is live?</summary><p>Minor updates are included in monthly retainer packages. One-off changes outside a retainer are billed at a flat rate agreed upon before work begins.</p></details>
-      <details class="faq-item"><summary>How do I get started?</summary><p>Just reach out below. We'll have a free 15-minute call to talk about your business and figure out the best plan for you. No pressure, no commitment.</p></details>
+      <details class="faq-item"><summary>Why should I choose Brand Scaling over a larger agency?</summary><p>Because you'll work directly with the people building your growth strategy. No account managers. No outsourcing. No getting lost in a queue. We take the time to understand your business and build a plan around your goals — not a template around our workflow.</p></details>
+      <details class="faq-item"><summary>How do I get started?</summary><p>Request a free growth audit below. We'll take a look at your current online presence, identify exactly where you're leaving growth on the table, and walk you through what we'd do about it. No pressure, no commitment.</p></details>
     </div>
   </div>
 </section>
 <section class="cta-section" id="contact">
   <div class="cta-glow"></div>
   <div class="wrap">
-    <h2>Ready to Grow Your<br><span style="color:var(--gold)">Business Online?</span></h2>
-    <p>Free consultation. No pressure. Let's talk about your business and build something great.</p>
+    <h2>See Exactly Where Your Business<br><span style="color:var(--gold)">Is Leaving Growth on the Table.</span></h2>
+    <p>Free growth audit. No pressure. No commitment.</p>
     <div class="cta-btns">
-      <a href="tel:+14802675833" class="btn-gold">📞 Call (480) 267-5833</a>
+      <a href="tel:+14802675833" class="btn-gold">Get Your Free Growth Audit</a>
       <a href="mailto:dursojeremy48@gmail.com" class="btn-outline">✉️ Email Us</a>
     </div>
     <div class="contact-row">
